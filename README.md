@@ -1,6 +1,6 @@
-﻿# âśď¸Ź Flight Monitor - War Thunder Dashboard for Flipper Zero
+﻿# Flight Monitor - War Thunder Dashboard for Flipper Zero
 
-<h2 align="center">Real-time Aircraft Parameters Monitor for Flipper Zero</h2>
+## Real-time Aircraft Parameters Monitor for Flipper Zero
 
 <div align="center">
     <img src="screenshots/1.png" alt="Screenshot 1" width="250">
@@ -8,23 +8,23 @@
     <img src="screenshots/4.png" alt="Screenshot 4" width="250">
 </div>
 
-This is a **comprehensive flight monitoring application** designed for the **Flipper Zero** that interfaces with **War Thunder** flight simulator via **Bluetooth Low Energy (BLE)**. The application provides real-time display of critical flight parameters with an intelligent alarm system for enhanced flight safety.
+This is a comprehensive flight monitoring application designed for the Flipper Zero that interfaces with War Thunder flight simulator via Bluetooth Low Energy (BLE). The application provides real-time display of critical flight parameters with an intelligent alarm system for enhanced flight safety.
 
-## âś¨ Features Overview
+## Features Overview
 
-**đź›©ď¸Ź Flight Parameters Display**
+**Flight Parameters Display**
 
 The application provides accurate and real-time readings for complete flight telemetry:
 
-* **Altitude (ALT):** Current height above ground in meters (**m**).
-* **Speed (SPD):** Indicated Air Speed (IAS) or True Air Speed (TAS) in kilometers per hour (**km/h**).
-* **Vertical Speed (V/S):** Rate of climb or descent in meters per second (**m/s**).
+* **Altitude (ALT):** Current height above ground in meters (m).
+* **Speed (SPD):** Indicated Air Speed (IAS) or True Air Speed (TAS) in kilometers per hour (km/h).
+* **Vertical Speed (V/S):** Rate of climb or descent in meters per second (m/s).
 * **Throttle (THR):** Engine power setting from 0% to 100%.
 * **Flaps (FLP):** Flaps deployment percentage from 0% to 100%.
 * **Gear Status:** Landing gear position (UP/DOWN).
 * **Pitch & Roll (P/R):** Aircraft orientation angles in degrees.
 
-**đźš¨ Intelligent Alarm System**
+**Intelligent Alarm System**
 
 Professional safety monitoring with configurable thresholds:
 
@@ -34,11 +34,11 @@ Professional safety monitoring with configurable thresholds:
 * **Stall Speed Warning:** Protection against dangerously low airspeeds (configurable).
 * **Overspeed Warning:** Alert when exceeding safe speed limits (configurable).
 * **Engine Failure Detection:** Automatic detection based on power loss + descent (power <100HP + falling + altitude >100m).
-* **G-Force Alerts:** Vibration warnings for extreme pitch (>60Â°) or roll (>70Â°) at high speeds (>200 km/h).
+* **G-Force Alerts:** Vibration warnings for extreme pitch (>60 deg) or roll (>70 deg) at high speeds (>200 km/h).
 * **Crash Detection:** Automatic alarm silence when aircraft data stops changing.
 * **Gear Alarms Toggle:** Disable all gear warnings for fixed-gear aircraft.
 
-**âš™ď¸Ź User Interface & Experience**
+**User Interface & Experience**
 
 * **Splash Screen:** 3-second startup logo with airplane graphic and branding.
 * **Multiple View Modes:** Main dashboard, throttle view, flaps view, orientation view.
@@ -47,13 +47,13 @@ Professional safety monitoring with configurable thresholds:
 * **Visual Feedback:** Progress bars for throttle and flaps, status messages for connection state.
 * **High Refresh Rate:** 100ms data update interval (10 Hz) for smooth operation.
 
-**đź“ˇ Connectivity**
+**Connectivity**
 
 * **Bluetooth Low Energy (BLE):** Custom protocol for efficient data transmission.
 * **Binary Data Format:** Compact 20-byte packets for minimal latency.
 * **Auto-Discovery:** Python server automatically finds and connects to Flipper Zero.
 
-## đź”§ Installation Guide
+## Installation Guide
 
 **Prerequisites**
 
@@ -79,7 +79,7 @@ GUI Server (Recommended):
 python flight_server_gui.py
 ```
 
-Features: visual interface, IP config persistence, auto-start, **auto-dependency installation** (no manual pip install needed!).
+Features: visual interface, IP config persistence, auto-start, auto-dependency installation (no manual pip install needed!).
 
 Console Server:
 
@@ -96,14 +96,14 @@ Both servers automatically install missing dependencies (`requests`, `bleak`) on
 3. Verify in browser - you should see JSON data
 4. Enter a battle to receive live flight data
 
-## đźŽ® Usage Instructions
+## Usage Instructions
 
 **On Flipper Zero:**
 
-1. Navigate to: **Apps â†’ Bluetooth â†’ Flight Monitor**
+1. Navigate to: Apps -> Bluetooth -> Flight Monitor
 2. Splash screen shows for 3 seconds
-3. Settings menu appears - configure thresholds or press **OK** on **START**
-4. Status shows **"Waiting for data..."**
+3. Settings menu appears - configure thresholds or press OK on START
+4. Status shows "Waiting for data..."
 
 **On PC:**
 
@@ -119,18 +119,17 @@ Both servers automatically install missing dependencies (`requests`, `bleak`) on
 3. Flight data appears on Flipper display!
 4. Alarms activate based on your configured thresholds
 
-## đź“Š Data Flow
+## Data Flow
 
 ```
-â”Śâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Śâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Śâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  War Thunder â”‚ â—„â”€HTTPâ”€â–şâ”‚ Python Server â”‚ â—„â”€BLEâ”€â”€â–şâ”‚ Flipper Zero â”‚
-â”‚   localhost  â”‚  JSON   â”‚  (PC)         â”‚ Binary  â”‚  (Display)   â”‚
-â”‚   :8111      â”‚         â”‚               â”‚         â”‚              â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-     100ms polling           Processing               100ms refresh
+War Thunder  <--HTTP-->  Python Server  <--BLE-->  Flipper Zero
+localhost       JSON         (PC)         Binary    (Display)
+:8111
+
+100ms polling          Processing            100ms refresh
 ```
 
-## đź› ď¸Ź Technical Specifications
+## Technical Specifications
 
 **Binary Protocol (20-byte packet):**
 
@@ -159,19 +158,19 @@ struct __attribute__((packed)) FlightData {
 * Data packet: 20 bytes
 * Stack size: ~2 KB
 
-## đź› Troubleshooting
+## Troubleshooting
 
 * **Cannot connect to game** - Verify War Thunder is running, check `http://localhost:8111/state` in browser
 * **Flipper Zero not found** - Ensure Flight Monitor app is running, check PC Bluetooth is enabled
 * **Constant gear alarms** - Set "Gear Alarms: OFF" in settings menu (for fixed-gear aircraft)
-* **Data not updating** - Make sure you're in flight (not hangar), restart Python server
+* **Data not updating** - Make sure you are in flight (not hangar), restart Python server
 
-## đź‘¨â€Ťđź’» Author
+## Author
 
 **Dr.Mosfet** - Created for the War Thunder and Flipper Zero communities.
 
 Based on PC Monitor by Olejka for BLE foundation.
 
-## đź“ś License
+## License
 
 MIT License - see LICENSE file for details.

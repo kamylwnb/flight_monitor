@@ -17,8 +17,8 @@ All notable changes to the Flight Monitor project will be documented in this fil
   - Overspeed warning (configurable threshold)
 - **Safety features:**
   - Engine failure detection (power <100HP + falling + altitude >100m)
-  - G-force alerts with vibration (pitch >60° or roll >70° at speed >200 km/h)
-  - Automatic crash detection (data unchanging → alarms stop)
+  - G-force alerts with vibration (pitch >60 deg or roll >70 deg at speed >200 km/h)
+  - Automatic crash detection (data unchanging -> alarms stop)
 - **Professional UI:**
   - 3-second startup splash screen with airplane logo
   - Settings menu with scroll bar (BME680-style)
@@ -41,7 +41,7 @@ All notable changes to the Flight Monitor project will be documented in this fil
 - BLE Protocol: Custom binary format (20 bytes)
 - Data rate: 100ms refresh interval
 - Configuration: Binary file with 5 user-adjustable thresholds
-- Icon: Custom 10×10 airplane sprite
+- Icon: Custom 10x10 airplane sprite
 
 **Developer:** Created by Dr.Mosfet for the War Thunder and Flipper Zero communities.
 
