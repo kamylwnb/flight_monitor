@@ -5,7 +5,7 @@ sourcecode:
   type: git
   location:
     origin: https://github.com/kamylwnb/flight_monitor
-    commit_sha: a954e7167eb7483e43b549ffd37def99e4fcd4a4
+    commit_sha: 17f449799993b49229265cfe420166c3cad68861
 
 short_description: "War Thunder flight parameters monitor with BLE connectivity"
 
