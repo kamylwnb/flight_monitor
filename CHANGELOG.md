@@ -4,9 +4,9 @@ All notable changes to the Flight Monitor project will be documented in this fil
 
 ## [1.0.0] - 2026-04-06
 
-### Initial Release
+**Initial Release**
 
-#### Features
+**Features:**
 - **Real-time flight data display:** Altitude, speed, vertical speed, throttle, flaps, gear status, pitch/roll
 - **Multiple view modes:** Main dashboard, throttle focus, flaps focus, orientation display
 - **Configurable alarm system:**
@@ -35,7 +35,7 @@ All notable changes to the Flight Monitor project will be documented in this fil
   - Auto-dependency installation (requests, bleak)
   - Visual status indicators and logging
 
-#### Technical Details
+**Technical Details:**
 - Platform: Flipper Zero (f7 firmware)
 - Language: C (Flipper app), Python 3.x (server)
 - BLE Protocol: Custom binary format (20 bytes)
@@ -43,11 +43,10 @@ All notable changes to the Flight Monitor project will be documented in this fil
 - Configuration: Binary file with 5 user-adjustable thresholds
 - Icon: Custom 10×10 airplane sprite
 
-#### Developer
-Created by **Dr.Mosfet** for the War Thunder and Flipper Zero communities.
+**Developer:** Created by Dr.Mosfet for the War Thunder and Flipper Zero communities.
 
 ---
 
-### Version History
+**Version History:**
 
 - **v1.0.0** (2026-04-06): Initial public release with full feature set
