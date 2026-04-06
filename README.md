@@ -1,4 +1,4 @@
-# ✈️ Flight Monitor - War Thunder Dashboard for Flipper Zero
+﻿# âśď¸Ź Flight Monitor - War Thunder Dashboard for Flipper Zero
 
 <h2 align="center">Real-time Aircraft Parameters Monitor for Flipper Zero</h2>
 
@@ -12,9 +12,9 @@
 
 This is a **comprehensive flight monitoring application** designed for the **Flipper Zero** that interfaces with **War Thunder** flight simulator via **Bluetooth Low Energy (BLE)**. The application provides real-time display of critical flight parameters with an intelligent alarm system for enhanced flight safety.
 
-## ✨ Features Overview
+## âś¨ Features Overview
 
-### 🛩️ Flight Parameters Display
+**đź›©ď¸Ź Flight Parameters Display**
 
 The application provides accurate and real-time readings for complete flight telemetry:
 
@@ -26,7 +26,7 @@ The application provides accurate and real-time readings for complete flight tel
 * **Gear Status:** Landing gear position (UP/DOWN).
 * **Pitch & Roll (P/R):** Aircraft orientation angles in degrees.
 
-### 🚨 Intelligent Alarm System
+**đźš¨ Intelligent Alarm System**
 
 Professional safety monitoring with configurable thresholds:
 
@@ -36,46 +36,34 @@ Professional safety monitoring with configurable thresholds:
 * **Stall Speed Warning:** Protection against dangerously low airspeeds (configurable).
 * **Overspeed Warning:** Alert when exceeding safe speed limits (configurable).
 * **Engine Failure Detection:** Automatic detection based on power loss + descent (power <100HP + falling + altitude >100m).
-* **G-Force Alerts:** Vibration warnings for extreme pitch (>60°) or roll (>70°) at high speeds (>200 km/h).
+* **G-Force Alerts:** Vibration warnings for extreme pitch (>60Â°) or roll (>70Â°) at high speeds (>200 km/h).
 * **Crash Detection:** Automatic alarm silence when aircraft data stops changing.
+* **Gear Alarms Toggle:** Disable all gear warnings for fixed-gear aircraft.
 
-### ⚙️ User Interface & Experience
-
-The application is designed for clarity, ease of use, and quick access to critical information:
+**âš™ď¸Ź User Interface & Experience**
 
 * **Splash Screen:** 3-second startup logo with airplane graphic and branding.
-* **Multiple View Modes:** 
-  - Main dashboard with all parameters
-  - Throttle-focused view with detailed power display
-  - Flaps-focused view with deployment details
-  - Orientation view with pitch/roll visualization
-* **Settings Menu:** BME680-style menu with:
-  - Altitude alarm threshold (5m steps)
-  - Gear warning altitude (5m steps)
-  - Gear retraction altitude (5m steps)
-  - Stall speed threshold (5 km/h steps)
-  - Overspeed limit (50 km/h steps)
-  - START button for BLE initialization
+* **Multiple View Modes:** Main dashboard, throttle view, flaps view, orientation view.
+* **Settings Menu:** Configurable thresholds (altitude, gear warnings, stall speed, overspeed).
 * **Persistent Configuration:** Settings saved to `/ext/apps_data/flight_monitor/settings.cfg`.
 * **Visual Feedback:** Progress bars for throttle and flaps, status messages for connection state.
 * **High Refresh Rate:** 100ms data update interval (10 Hz) for smooth operation.
 
-### 📡 Connectivity
+**đź“ˇ Connectivity**
 
 * **Bluetooth Low Energy (BLE):** Custom protocol for efficient data transmission.
 * **Binary Data Format:** Compact 20-byte packets for minimal latency.
 * **Auto-Discovery:** Python server automatically finds and connects to Flipper Zero.
-* **Reliable Communication:** Error handling and connection monitoring.
 
-## 🔧 Installation Guide
+## đź”§ Installation Guide
 
-### Prerequisites
+**Prerequisites**
 
-* **Flipper Zero** with f7 firmware
-* **War Thunder** game installed on PC
-* **Python 3.x** installed on PC
+* Flipper Zero with f7 firmware
+* War Thunder game installed on PC
+* Python 3.x installed on PC
 
-### 1. Compile and Install Flipper App
+**1. Compile and Install Flipper App**
 
 Navigate to the flipperzero-firmware directory and compile:
 
@@ -83,231 +71,111 @@ Navigate to the flipperzero-firmware directory and compile:
 ./fbt COMPACT=1 DEBUG=0 launch APPSRC=applications_user/flight_monitor
 ```
 
-Or manually copy the compiled `.fap` file:
+Or manually copy the compiled `.fap` file from `build/f7-firmware-C/.extapps/flight_monitor.fap` to `/ext/apps/Bluetooth/` on your Flipper Zero.
+
+**2. Set Up Python Server**
+
+GUI Server (Recommended):
 
 ```bash
-# After compilation, file is in:
-build/f7-firmware-C/.extapps/flight_monitor.fap
-
-# Copy to Flipper:
-/ext/apps/Bluetooth/flight_monitor.fap
-```
-
-### 2. Set Up Python Server
-
-#### Option A: GUI Server (Recommended)
-
-```bash
-cd applications_user/flight_monitor
 python flight_server_gui.py
 ```
 
-The GUI server features:
-- Visual interface with status indicators
-- IP configuration with persistence
-- Auto-start functionality (500ms delay)
-- **Auto-dependency installation** (no manual pip install needed!)
-- Log output for debugging
+Features: visual interface, IP config persistence, auto-start, **auto-dependency installation** (no manual pip install needed!).
 
-#### Option B: Console Server
+Console Server:
 
 ```bash
-cd applications_user/flight_monitor
 python flight_server_clean.py
 ```
 
-The console server is lighter weight and includes:
-- Auto-dependency installation
-- Clean console output
-- Same functionality as GUI version
+Both servers automatically install missing dependencies (`requests`, `bleak`) on first run.
 
-**Note:** Both servers automatically install missing dependencies (`requests`, `bleak`) on first run!
-
-### 3. Enable War Thunder API
-
-The War Thunder API is enabled by default when the game is running:
+**3. Enable War Thunder API**
 
 1. Launch War Thunder
-2. API endpoint is available at: `http://localhost:8111/state`
+2. API is available at: `http://localhost:8111/state`
 3. Verify in browser - you should see JSON data
-4. Enter a battle to start receiving live flight data
+4. Enter a battle to receive live flight data
 
-## 🎮 Usage Instructions
+## đźŽ® Usage Instructions
 
-### On Flipper Zero:
+**On Flipper Zero:**
 
-1. Power on Flipper Zero
-2. Navigate to: **Apps → Bluetooth → Flight Monitor**
-3. Application shows splash screen for 3 seconds
-4. Settings menu appears - configure thresholds or press **OK** on **START**
-5. Status shows **"Waiting for data..."** or **"No flight data"**
+1. Navigate to: **Apps â†’ Bluetooth â†’ Flight Monitor**
+2. Splash screen shows for 3 seconds
+3. Settings menu appears - configure thresholds or press **OK** on **START**
+4. Status shows **"Waiting for data..."**
 
-### On PC:
+**On PC:**
 
 1. Ensure War Thunder is running
-2. Launch Python server (GUI or console version)
-3. Server will auto-install dependencies if needed
-4. Server finds Flipper and starts transmitting data
-5. Watch status indicators for connection confirmation
+2. Launch Python server
+3. Server auto-installs dependencies and connects to Flipper
+4. Watch status indicators for connection confirmation
 
-### In-Game:
+**In-Game:**
 
-1. Enter any battle (Air Battles recommended)
+1. Enter any Air Battle
 2. Get into aircraft cockpit
 3. Flight data appears on Flipper display!
-4. Switch views with directional buttons
-5. Alarms activate based on configured thresholds
+4. Alarms activate based on your configured thresholds
 
-## 📊 Data Flow Diagram
+## đź“Š Data Flow
 
 ```
-┌──────────────┐         ┌───────────────┐         ┌──────────────┐
-│  War Thunder │ ◄─HTTP─►│ Python Server │ ◄─BLE──►│ Flipper Zero │
-│   localhost  │  JSON   │  (PC)         │ Binary  │  (Display)   │
-│   :8111      │         │               │         │              │
-└──────────────┘         └───────────────┘         └──────────────┘
-     100ms                   Processing                100ms
-    Polling                  + Encoding              Refresh Rate
+â”Śâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Śâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â”Śâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  War Thunder â”‚ â—„â”€HTTPâ”€â–şâ”‚ Python Server â”‚ â—„â”€BLEâ”€â”€â–şâ”‚ Flipper Zero â”‚
+â”‚   localhost  â”‚  JSON   â”‚  (PC)         â”‚ Binary  â”‚  (Display)   â”‚
+â”‚   :8111      â”‚         â”‚               â”‚         â”‚              â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”         â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+     100ms polling           Processing               100ms refresh
 ```
 
-1. Game exports telemetry via HTTP (JSON format)
-2. Python server polls every 100ms
-3. Data parsed and encoded to binary (20 bytes)
-4. Transmitted via BLE to Flipper Zero
-5. Flipper decodes and displays with visual elements
-6. Alarm system evaluates thresholds continuously
+## đź› ď¸Ź Technical Specifications
 
-## 🛠️ Technical Specifications
-
-### Binary Protocol Format
+**Binary Protocol (20-byte packet):**
 
 ```c
-// 20-byte packet structure
 struct __attribute__((packed)) FlightData {
-    int16_t  altitude;        // Altitude in meters (-32768 to 32767)
-    uint16_t speed;           // Speed in km/h (0 to 65535)
-    int8_t   vertical_speed;  // Vertical speed in m/s (-128 to 127)
-    int16_t  throttle;        // Throttle 0-100 (scaled)
-    int8_t   pitch;           // Pitch angle in degrees
-    int8_t   roll;            // Roll angle in degrees
-    uint8_t  gear;            // Gear status: 0=UP, 1=DOWN
-    uint8_t  flaps;           // Flaps percentage 0-100
-    int16_t  power;           // Engine power in HP
-    int16_t  fuel;            // Fuel in kg
+    int16_t  altitude;       // meters
+    uint16_t speed;          // km/h
+    int8_t   vertical_speed; // m/s
+    int16_t  throttle;       // 0-100
+    int8_t   pitch;          // degrees
+    int8_t   roll;           // degrees
+    uint8_t  gear;           // 0=UP, 1=DOWN
+    uint8_t  flaps;          // 0-100%
+    int16_t  power;          // HP
+    int16_t  fuel;           // kg
 };
 ```
 
-### BLE Characteristics
+**BLE:**
+* Service UUID: `8fe5b3d5-2e7f-4a98-2a48-7acc60fe0000`
+* RX UUID: `19ed82ae-ed21-4c9d-4145-228e62fe0000`
+* Device name: `"Flight XXXX"` (XXXX = last 4 MAC digits XOR 0x0003)
 
-* **Service UUID:** `8fe5b3d5-2e7f-4a98-2a48-7acc60fe0000`
-* **RX Characteristic UUID:** `19ed82ae-ed21-4c9d-4145-228e62fe0000`
-* **Device Name Pattern:** `"Flight XXXX"` (XXXX = last 4 MAC digits XOR 0x0003)
+**Performance:**
+* Refresh rate: 100ms (10 Hz)
+* Data packet: 20 bytes
+* Stack size: ~2 KB
 
-### Configuration File Structure
+## đź› Troubleshooting
 
-Binary file stored at `/ext/apps_data/flight_monitor/settings.cfg`:
+* **Cannot connect to game** - Verify War Thunder is running, check `http://localhost:8111/state` in browser
+* **Flipper Zero not found** - Ensure Flight Monitor app is running, check PC Bluetooth is enabled
+* **Constant gear alarms** - Set "Gear Alarms: OFF" in settings menu (for fixed-gear aircraft)
+* **Data not updating** - Make sure you're in flight (not hangar), restart Python server
 
-```c
-typedef struct {
-    uint16_t altitude_alarm;      // Default: 120 meters
-    uint16_t gear_warning_alt;    // Default: 150 meters
-    uint16_t gear_retract_alt;    // Default: 200 meters
-    uint16_t stall_speed;         // Default: 100 km/h
-    uint16_t overspeed;           // Default: 700 km/h
-} FlightConfig;
-```
+## đź‘¨â€Ťđź’» Author
 
-### Performance Metrics
+**Dr.Mosfet** - Created for the War Thunder and Flipper Zero communities.
 
-* **Refresh Rate:** 100ms (10 Hz)
-* **BLE Latency:** <50ms typical
-* **Data Packet Size:** 20 bytes
-* **Configuration Size:** 10 bytes
-* **Memory Footprint:** ~2 KB stack size
+Based on PC Monitor by Olejka for BLE foundation.
 
-## 📁 Project Structure
+## đź“ś License
 
-```
-flight_monitor/
-├── application.fam          # Flipper application manifest
-├── flight_monitor.h         # Main header file
-├── flight_monitor.c         # Main application logic
-├── icon.png                 # 10x10 airplane sprite
-├── manifest.yml             # App catalog manifest
-├── CHANGELOG.md             # Version history
-├── README.md                # This file
-├── helpers/                 # Helper modules
-├── views/                   # View rendering code
-├── screenshots/             # Application screenshots
-│   ├── 1.png               # Main dashboard
-│   ├── 2.png               # Settings menu
-│   └── 3.png               # Alerts in action
-├── flight_server_gui.py     # Python server with GUI
-├── flight_server_clean.py   # Python server (console)
-└── test_flight.py           # Testing utilities
-```
-
-## 🐛 Troubleshooting
-
-### "Cannot connect to game"
-- Verify War Thunder is running
-- Check API in browser: http://localhost:8111/state
-- If not working, restart the game
-
-### "Flipper Zero not found"
-- Ensure Flight Monitor app is running on Flipper
-- Check that PC Bluetooth is enabled
-- Try restarting the app on Flipper
-
-### "Connection Lost"
-- Distance between PC and Flipper too large
-- Move devices closer together
-- Restart Python server
-
-### Data not updating
-- Make sure you're in flight (not hangar)
-- Restart Python server
-- Check logs in terminal
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these guidelines:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📜 License
-
-This project is distributed under the MIT License.
-
-## 👨‍💻 Author
-
-**Dr.Mosfet**
-
-Created for the War Thunder and Flipper Zero communities with ❤️
-
-## 🙏 Acknowledgments
-
-* Flipper Zero development team for the amazing platform
-* War Thunder for the flight simulation experience
-* BME680 app developers for menu inspiration
-* PC Monitor app by Olejka for BLE foundation
-* Community testers and contributors
-
-## 📞 Support
-
-For issues, questions, or feature requests:
-- Open an issue on GitHub
-- Check existing documentation
-- Review CHANGELOG.md for version history
+MIT License - see LICENSE file for details.
 
 ---
-
-**Version:** 1.0.0  
-**Last Updated:** April 6, 2026  
-**Status:** Stable Release
-
-**Note:** Using this during actual flight is strongly discouraged! 😄
