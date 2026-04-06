@@ -45,8 +45,6 @@ All notable changes to the Flight Monitor project will be documented in this fil
 
 **Developer:** Created by Dr.Mosfet for the War Thunder and Flipper Zero communities.
 
----
-
 **Version History:**
 
 - **v1.0.0** (2026-04-06): Initial public release with full feature set

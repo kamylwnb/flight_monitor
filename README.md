@@ -8,8 +8,6 @@
     <img src="screenshots/4.png" alt="Screenshot 4" width="250">
 </div>
 
----
-
 This is a **comprehensive flight monitoring application** designed for the **Flipper Zero** that interfaces with **War Thunder** flight simulator via **Bluetooth Low Energy (BLE)**. The application provides real-time display of critical flight parameters with an intelligent alarm system for enhanced flight safety.
 
 ## âś¨ Features Overview
@@ -177,5 +175,3 @@ Based on PC Monitor by Olejka for BLE foundation.
 ## đź“ś License
 
 MIT License - see LICENSE file for details.
-
----
