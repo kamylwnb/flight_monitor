@@ -2,7 +2,7 @@
 
 All notable changes to the Flight Monitor project will be documented in this file.
 
-## [1.0.0] - 2026-04-06
+## Version 1.0.0 - 2026-04-06
 
 **Initial Release**
 
