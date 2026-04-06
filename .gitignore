@@ -1,5 +1,7 @@
-# Exclude deprecated helpers folder - SDK provides BLE API
-helpers/
+# Exclude deprecated serial_service files - provided by SDK
+helpers/serial_service.c
+helpers/serial_service.h
+helpers/serial_service_uuid.inc
 
 # Python cache
 __pycache__/

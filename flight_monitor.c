@@ -1,4 +1,5 @@
 #include "flight_monitor.h"
+#include "helpers/ble_serial.h"
 
 static void draw_progress_bar(Canvas* canvas, uint8_t x, uint8_t y, uint8_t width, uint8_t value);
 
